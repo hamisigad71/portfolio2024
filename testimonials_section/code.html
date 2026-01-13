@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html class="light dark" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Testimonials Section</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#0A6EBD",
+            "background-light": "#FFFFFF",
+            "background-dark": "#101622",
+          },
+          fontFamily: {
+            "display": ["Inter"]
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+        },
+      },
+    }
+  </script>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark">
+  <div class="relative w-full flex flex-col bg-background-light dark:bg-background-dark"
+    style='font-family: Inter, "Noto Sans", sans-serif;'>
+    <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+      <div class="text-center">
+        <h2 class="text-[#1D2939] dark:text-gray-100 text-3xl md:text-4xl font-bold tracking-tight">What My Clients Say
+        </h2>
+        <p class="mt-4 text-[#667085] dark:text-gray-400 text-lg">Trusted by professionals from leading companies.</p>
+      </div>
+      <div class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Testimonial Card 1 -->
+        <div
+          class="flex flex-col gap-6 rounded-xl bg-background-light dark:bg-background-dark border border-gray-200 dark:border-gray-700 p-6 shadow-sm transition-shadow hover:shadow-lg">
+          <span class="material-symbols-outlined text-primary text-4xl">format_quote</span>
+          <p class="text-[#1D2939] dark:text-gray-200 text-base font-normal leading-relaxed grow">
+            Working with this developer was a fantastic experience. Their expertise and professionalism were evident
+            from day one, delivering a high-quality product on time.
+          </p>
+          <div class="flex items-center gap-4">
+            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12"
+              data-alt="Professional headshot of Jane Doe"
+              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDsjMTxqi0qAbj_BvGJKRgwbs8b9__BMZCrlqqbKp3RgC5vzOFnnABLHUPV4hij_ySKjJtOdTl1lZqlFtaO1UMtmk4GfjtptGg9aHaAdXn3DYHl45z7xeQQaS9fgiIPoWVE8qrYx7An4cGhIS7nAtg18aA89YBN29HSXhtHliQwXTArX3L0v3xHoVo8YDMfURPppuxGLDfsI73PNocJXHVw8U6xSJ_L-NjdZ8rpxIKZFGdnvp_F5uiKAYLgjCpL7u1mgByPepB6spo");'>
+            </div>
+            <div class="flex-1">
+              <p class="text-[#1D2939] dark:text-gray-100 text-base font-semibold leading-normal">Jane Doe</p>
+              <p class="text-[#667085] dark:text-gray-400 text-sm font-normal leading-normal">CEO at Innovate Inc.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial Card 2 -->
+        <div
+          class="flex flex-col gap-6 rounded-xl bg-background-light dark:bg-background-dark border border-gray-200 dark:border-gray-700 p-6 shadow-sm transition-shadow hover:shadow-lg">
+          <span class="material-symbols-outlined text-primary text-4xl">format_quote</span>
+          <p class="text-[#1D2939] dark:text-gray-200 text-base font-normal leading-relaxed grow">
+            An exceptional problem-solver who brought our vision to life. The attention to detail and commitment to the
+            project's success were truly impressive.
+          </p>
+          <div class="flex items-center gap-4">
+            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12"
+              data-alt="Professional headshot of John Smith"
+              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB_5_Qs_FAucmU3xc1BUr2oJnkBdqnj0kd-UTGiSAZ_wXFlynoagmVW0IAU9aFm6C0HQA79uUsehoeTxvalxlXrKqvL-STfPG5TQGfex4WrZ6ZHphaQWkzdMrtJspfWxBxtKZF1dIzMYW-GQznDIyGDnXcPyeZXvMZ301OjqBoy-cdCECULpRsKQi2fLrlMnq76VIH8t4l2UyF1Wvhp1npWOtrGsGVaumr-vDCuOMxq0Ngx3z1xU9dC5HlxtJe5pfceBXm50WB2XRo");'>
+            </div>
+            <div class="flex-1">
+              <p class="text-[#1D2939] dark:text-gray-100 text-base font-semibold leading-normal">John Smith</p>
+              <p class="text-[#667085] dark:text-gray-400 text-sm font-normal leading-normal">Project Manager at
+                TechCorp</p>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial Card 3 -->
+        <div
+          class="flex flex-col gap-6 rounded-xl bg-background-light dark:bg-background-dark border border-gray-200 dark:border-gray-700 p-6 shadow-sm transition-shadow hover:shadow-lg">
+          <span class="material-symbols-outlined text-primary text-4xl">format_quote</span>
+          <p class="text-[#1D2939] dark:text-gray-200 text-base font-normal leading-relaxed grow">
+            The communication was clear, the code was clean, and the final result exceeded our expectations. I would
+            highly recommend them to anyone.
+          </p>
+          <div class="flex items-center gap-4">
+            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12"
+              data-alt="Professional headshot of Emily White"
+              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBSh6qagNH1vCUzGmkyEBdbEuntdJtZjOfK0RtkNeMLUHLcLTjKd3XB2PwcuELbCy0GdoTbjADUH2cgrqQC9sMdRVzh3HLXcu4V26Me845Zcm-SJla_iXmTKLydpiYTiRnmkp9BepXeWztmTq9rBJOoOg_82H22e3MS3c5PFbiHLkB-CK9JfzxnGNJfjLUPrCauoXJTp1_IFWjiezUe3YAyy3yQz4IBi7ynqzHOQu14I323USB-6R1HsOU8XH40-rw5Fje9SILUd1w");'>
+            </div>
+            <div class="flex-1">
+              <p class="text-[#1D2939] dark:text-gray-100 text-base font-semibold leading-normal">Emily White</p>
+              <p class="text-[#667085] dark:text-gray-400 text-sm font-normal leading-normal">Lead Designer at Creative
+                Solutions</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex pt-16 justify-center">
+        <button
+          class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity">
+          <span class="truncate">Work With Me</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
