@@ -1,0 +1,11 @@
+name = "portfolio2024"
+main = "dist/index.js"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[env.production]
+name = "portfolio2024"
+
+[[routes]]
+pattern = "*"
+zone_name = "pages.dev"

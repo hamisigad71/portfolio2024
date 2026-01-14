@@ -4,12 +4,8 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const useStaticExport = process.env.NEXT_STATIC_EXPORT === "true";
 
 const nextConfig = {
-  ...(useStaticExport
-    ? {
-        output: "export",
-        trailingSlash: true,
-      }
-    : {}),
+  output: "static",
+  trailingSlash: true,
   ...(basePath
     ? {
         basePath,
@@ -28,10 +24,6 @@ const nextConfig = {
         hostname: 'i.pinimg.com',
       },
     ],
-  },
-  // Prevent chunk loading errors
-  experimental: {
-    esmExternals: false,
   },
   // Handle network timeouts gracefully
   env: {
