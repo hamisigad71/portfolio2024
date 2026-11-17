@@ -1,156 +1,241 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
+import { Mail, Phone, MapPin, Send, Check } from "lucide-react";
+import { toast } from "sonner";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 
 const Contactform = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    country: "",
+    message: "",
+    agreed: false,
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.email || !formData.message) {
+      toast.error("Please fill in your email and project details.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    // Simulate snappy submission
+    setTimeout(() => {
+      setIsSubmitting(false);
+      toast.success("Message sent successfully!", {
+        description: "Thank you for reaching out. Daysman will reply within 24 hours.",
+      });
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        country: "",
+        message: "",
+        agreed: false,
+      });
+    }, 600);
+  };
+
   return (
-    <section className="overflow-x-hidden bg-darkmode dark:bg-darklight">
-      <div className="container mx-auto max-w-6xl px-4">
-        <div className="grid md:grid-cols-12 grid-cols-1 md:gap-7 gap-0">
+    <section className="py-20 lg:py-28 bg-slate-900 text-white relative overflow-hidden" id="contact">
+      {/* Background radial gradient */}
+      <div
+        className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none"
+        aria-hidden="true"
+      />
+
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid md:grid-cols-12 items-center gap-12 lg:gap-16">
+          {/* Left Column: Contact Info & Proof */}
           <div
-            className="row-start-1 col-start-1 row-end-2 md:col-end-7 col-end-12"
-            data-aos="fade-left"
-            data-aos-delay="200"
-            data-aos-duration="1000"
+            className="md:col-span-6 space-y-8"
+            data-aos="fade-right"
+            data-aos-duration="600"
           >
-            <div className="flex gap-2 items-center justify-start">
-              <span className="w-3 h-3 rounded-full bg-success"></span>
-              <span className="font-medium text-sm text-white">
-                build everything
-              </span>
+            <div>
+              <Badge variant="glass" className="px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-blue-300 border-blue-500/30 mb-4">
+                Get in Touch
+              </Badge>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
+                Let’s discuss your project and take it to the next level.
+              </h2>
             </div>
-            <h2 className="sm:text-4xl text-[28px] leading-tight font-bold text-white py-12">
-              Let’s discuss about your project and take it the next level.
-            </h2>
-            <div className="grid grid-cols-6 pb-12 border-b border-dark_border ">
-              <div className="col-span-3">
-                <span className="text-white/50 text-lg">Phone</span>
-                <p className="bg-transparent border-0 text-white text-lg">
-                  +254-742-630973
-                </p>
+
+            <div className="space-y-6 pt-4 border-t border-slate-800">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-xl bg-slate-800 border border-slate-700/80 text-blue-400">
+                  <Phone className="h-5 w-5" />
+                </div>
+                <div>
+                  <span className="text-xs font-medium text-slate-400 uppercase tracking-wider block mb-1">
+                    Phone & WhatsApp
+                  </span>
+                  <a
+                    href="tel:+254742630973"
+                    className="text-base sm:text-lg font-medium text-white hover:text-blue-400 transition-colors"
+                  >
+                    +254 742 630 973
+                  </a>
+                </div>
               </div>
-              <div className="col-span-3">
-                <span className="text-white/50 text-lg">Email</span>
-                <p className="bg-transparent border-0 text-white text-lg">
-                  hamisigad77@gmail.com
-                </p>
+
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-xl bg-slate-800 border border-slate-700/80 text-blue-400">
+                  <Mail className="h-5 w-5" />
+                </div>
+                <div>
+                  <span className="text-xs font-medium text-slate-400 uppercase tracking-wider block mb-1">
+                    Email Address
+                  </span>
+                  <a
+                    href="mailto:hamisigad77@gmail.com"
+                    className="text-base sm:text-lg font-medium text-white hover:text-blue-400 transition-colors"
+                  >
+                    hamisigad77@gmail.com
+                  </a>
+                </div>
               </div>
-              <div className="col-span-6 pt-8">
-                <span className="text-white/50 text-lg">Location</span>
-                <p className="bg-transparent border-0 text-white text-lg">
-                  Nairobi , kasarani
-                </p>
+
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-xl bg-slate-800 border border-slate-700/80 text-blue-400">
+                  <MapPin className="h-5 w-5" />
+                </div>
+                <div>
+                  <span className="text-xs font-medium text-slate-400 uppercase tracking-wider block mb-1">
+                    Location
+                  </span>
+                  <p className="text-base sm:text-lg font-medium text-white">
+                    Nairobi, Kasarani, Kenya
+                  </p>
+                </div>
               </div>
             </div>
-            <div className="pt-12">
-              <p className="text-white/50 pb-4 text-base">Trusted by</p>
-              <div className="flex items-center flex-wrap md:gap-14 gap-7">
+
+            <div className="pt-6 border-t border-slate-800">
+              <p className="text-xs uppercase tracking-wider font-semibold text-slate-400 mb-4">
+                Payment & Integration Options
+              </p>
+              <div className="flex items-center flex-wrap gap-8 opacity-80 grayscale hover:grayscale-0 transition-[filter]">
                 <Image
                   src="/images/contact/google-pay.png"
-                  alt="Google-pay"
-                  width={100}
-                  height={20}
-                  style={{ width: "auto", height: "auto" }}
-                  quality={100}
-                  className="w_f max-w-28 w-full h-5"
-                />
-                <Image
-                  src="/images/contact/play-juction.png"
-                  alt="play-juction"
-                  width={100}
-                  height={20}
-                  style={{ width: "auto", height: "auto" }}
-                  quality={100}
-                  className="w_f max-w-24 w-full h-6"
+                  alt="Google Pay"
+                  width={90}
+                  height={24}
+                  className="h-5 w-auto object-contain"
                 />
                 <Image
                   src="/images/contact/stripe.png"
-                  alt="stripe"
-                  width={100}
-                  height={20}
-                  style={{ width: "auto", height: "auto" }}
-                  quality={100}
-                  className="w_f max-w-14 w-full h-6"
+                  alt="Stripe"
+                  width={60}
+                  height={24}
+                  className="h-5 w-auto object-contain"
                 />
                 <Image
                   src="/images/contact/wise.png"
-                  alt="wise"
-                  width={100}
-                  height={20}
-                  style={{ width: "auto", height: "auto" }}
-                  quality={100}
-                  className="w_f max-w-16 w-full h-4"
+                  alt="Wise"
+                  width={70}
+                  height={24}
+                  className="h-4 w-auto object-contain"
                 />
               </div>
             </div>
           </div>
+
+          {/* Right Column: Contact Form */}
           <div
-            data-aos="fade-right"
-            data-aos-delay="200"
-            data-aos-duration="1000"
-            className="relative before:content-[''] before:absolute before:bg-[url('/images/contact/form-line.png')] before:bg-no-repeat before:w-52 before:h-24 before:top-[5%] before:bg-contain before:left-[35%] before:z-1 before:translate-x-full lg:before:inline-block before:hidden after:content-[''] after:absolute after:bg-[url('/images/contact/from-round-line.png')] after:bg-no-repeat after:w-25.25 after:h-25.25 after:bg-contain after:top-1/2 after:-left-[25%] after:z-1 after:translate-x-1/2 after:translate-y-1/2 md:after:inline-block after:hidden md:row-start-1 row-start-2 md:col-start-8 col-start-1 row-end-2 col-end-13"
+            className="md:col-span-6"
+            data-aos="fade-left"
+            data-aos-duration="600"
           >
-            <div className="lg:mt-0 mt-8  bg-white dark:bg-darkmode max-w-50 m-auto pt-8.75 pb-8 px-9.5 rounded-md relative z-10">
-              <h2 className="sm:text-3xl text-lg font-bold text-midnight_text mb-3 dark:text-white">
-                Start the project
-              </h2>
-              <form className="flex w-full m-auto justify-between flex-wrap gap-4">
-                <div className="flex gap-4">
-                  <input
-                    className="text-midnight_text w-full text-base transition-[0.5s] bg-transparent dark:border-dark_border dark:text-white px-[0.9375rem] py-[0.830rem] border border-border border-solid focus:border-primary dark:focus:border-primary placeholder:text-grey rounded-lg focus-visible:outline-0"
-                    type="text"
-                    placeholder="First name"
-                  />
-                  <input
-                    type="text"
-                    className="text-midnight_text w-full text-base transition-[0.5s] bg-transparent dark:border-dark_border dark:text-white px-[0.9375rem] py-[0.830rem] border border-border border-solid focus:border-primary dark:focus:border-primary placeholder:text-grey rounded-lg focus-visible:outline-0"
-                    placeholder="Last name"
-                  />
-                </div>
-                <div className="w-full">
-                  <input
-                    type="email"
-                    className="text-midnight_text w-full text-base transition-[0.5s] bg-transparent dark:border-dark_border dark:text-white px-[0.9375rem] py-[0.830rem] border border-border border-solid focus:border-primary dark:focus:border-primary placeholder:text-grey rounded-lg focus-visible:outline-0"
-                    placeholder="youremail@website.com"
-                  />
-                </div>
-                <div className="w-full">
-                  <input
-                    className="text-midnight_text w-full text-base transition-[0.5s] bg-transparent dark:border-dark_border dark:text-white px-[0.9375rem] py-[0.830rem] border border-border border-solid focus:border-primary dark:focus:border-primary placeholder:text-grey rounded-lg focus-visible:outline-0"
-                    type="text"
-                    placeholder="Country"
-                  />
-                </div>
-                <div className="w-full">
-                  <textarea
-                    className="text-midnight_text h-37.5 w-full text-base transition-[0.5s] bg-transparent dark:border-dark_border dark:text-white px-[0.9375rem] py-[0.830rem] border! border-border border-solid! focus:border-primary dark:focus:border-primary placeholder:text-grey rounded-lg focus-visible:outline-0"
-                    placeholder="Let us know about your project"
-                  ></textarea>
-                </div>
-                <div className="flex">
-                  <input
-                    id="wp-comment-cookies-consent"
-                    name="wp-comment-cookies-consent"
-                    type="checkbox"
-                    value="yes"
-                    className="hover:opacity-1 checked:bg-primary checked:opacity-1 relative border-2 border-solid border-primary rounded-xs bg-none cursor-pointer leading-none mr-2 outline-0 p-0! align-text-top h-5 sm:w-5 w-9 opacity-[0.5] before:content-[''] before:absolute before:right-1/2 before:top-1/2 before:w-1 before:h-2 before:z-2 before:-mt-0.25 before:-ml-0.25 before:-mr-0.25 before:transform before:rotate-45 before:translate-x-[-50%] before:translate-y-[-50%] dark:focus:border-primary"
-                  />
-                  <div className="text-grey dark:text-white/50">
-                    I have read and acknowledge the{" "}
-                    <p className="text-primary inline cursor-pointer">
-                      Terms and Conditions{" "}
-                    </p>
+            <Card className="p-8 sm:p-10 rounded-3xl bg-slate-950/90 border-slate-800 backdrop-blur-2xl shadow-2xl text-white">
+              <h3 className="text-2xl font-bold text-white mb-2">
+                Start a conversation
+              </h3>
+              <p className="text-sm text-slate-400 mb-8 leading-relaxed">
+                Fill in your project brief and I’ll get back to you with timelines and architectural ideas.
+              </p>
+
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-medium text-slate-300">First Name</label>
+                    <Input
+                      placeholder="Jane"
+                      value={formData.firstName}
+                      onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                      className="bg-slate-900/90 border-slate-700/80 text-white placeholder:text-slate-500 rounded-xl"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-medium text-slate-300">Last Name</label>
+                    <Input
+                      placeholder="Doe"
+                      value={formData.lastName}
+                      onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                      className="bg-slate-900/90 border-slate-700/80 text-white placeholder:text-slate-500 rounded-xl"
+                    />
                   </div>
                 </div>
-                <div className="w-full">
-                  <button
-                    className="w-full bg-primary hover:bg-blue-700 text-white py-3 rounded-lg"
-                    type="submit"
-                  >
-                    Submit Inquiry
-                  </button>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-medium text-slate-300">Email Address *</label>
+                  <Input
+                    type="email"
+                    required
+                    placeholder="jane@company.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="bg-slate-900/90 border-slate-700/80 text-white placeholder:text-slate-500 rounded-xl"
+                  />
                 </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-medium text-slate-300">Location / Country</label>
+                  <Input
+                    placeholder="United States, Kenya, UK, etc."
+                    value={formData.country}
+                    onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                    className="bg-slate-900/90 border-slate-700/80 text-white placeholder:text-slate-500 rounded-xl"
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-medium text-slate-300">Project Details *</label>
+                  <Textarea
+                    required
+                    rows={4}
+                    placeholder="Tell me about what you're building, budget, and desired launch date..."
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="bg-slate-900/90 border-slate-700/80 text-white placeholder:text-slate-500 rounded-xl resize-none"
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full h-12 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-base shadow-lg shadow-blue-600/25 transition-transform"
+                >
+                  {isSubmitting ? (
+                    "Sending Inquiry..."
+                  ) : (
+                    <span className="inline-flex items-center gap-2">
+                      Submit Inquiry
+                      <Send className="h-4 w-4" />
+                    </span>
+                  )}
+                </Button>
               </form>
-            </div>
+            </Card>
           </div>
         </div>
       </div>

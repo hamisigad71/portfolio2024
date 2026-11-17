@@ -1,110 +1,116 @@
 "use client";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import SocialSignIn from "../SocialSignIn";
 import Logo from "@/components/Layout/Header/Logo";
-import Loader from "@/components/Common/Loader";
-import toast, { Toaster } from "react-hot-toast";
+import { toast } from "sonner";
 import AuthDialogContext from "@/app/context/AuthDialogContext";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const Signin = ({ signInOpen }: { signInOpen?: any }) => {
-  const { data: session } = useSession();
   const [username, setUsername] = useState("admin");
   const [password, setPassword] = useState("admin123");
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const authDialog = useContext(AuthDialogContext);
 
-  const handleSubmit = async (e: any) => {
-    const notify = () => toast("Here is your toast.");
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+
     const result = await signIn("credentials", {
       redirect: false,
       username,
       password,
     });
-    if (result?.error) {
-      // Handle successful sign-in
-      setError(result.error);
-    }
+
+    setLoading(false);
+
     if (result?.status === 200) {
-      setTimeout(() => {
-        signInOpen(false);
-      }, 1200);
+      toast.success("Welcome back!", {
+        description: "You have signed in successfully.",
+      });
+      if (signInOpen) signInOpen(false);
       authDialog?.setIsSuccessDialogOpen(true);
       setTimeout(() => {
         authDialog?.setIsSuccessDialogOpen(false);
-      }, 1100);
+      }, 1200);
     } else {
+      toast.error("Sign in failed", {
+        description: "Invalid credentials. Please verify your details.",
+      });
       authDialog?.setIsFailedDialogOpen(true);
       setTimeout(() => {
         authDialog?.setIsFailedDialogOpen(false);
-      }, 1100);
+      }, 1200);
     }
   };
 
   return (
-    <>
-      <div className="mb-10 text-center mx-auto inline-block max-w-[160px]">
+    <div>
+      <div className="mb-6 text-center mx-auto block max-w-[140px]">
         <Logo />
       </div>
 
       <SocialSignIn />
 
-      <span className="z-1 relative my-8 block text-center">
-        <span className="-z-1 absolute left-0 top-1/2 block h-px w-full bg-border dark:bg-dark_border"></span>
-        <span className="text-body-secondary relative z-10 inline-block bg-white px-3 text-base dark:bg-darklight">
-          OR
-        </span>
-        <Toaster />
-      </span>
+      <div className="relative my-6 text-center">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-slate-200 dark:border-slate-800" />
+        </div>
+        <div className="relative flex justify-center text-xs uppercase">
+          <span className="bg-white dark:bg-slate-900 px-3 text-slate-500 font-medium">
+            or continue with
+          </span>
+        </div>
+      </div>
 
-      <form>
-        <div className="mb-[22px]">
-          <input
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="text-xs font-medium text-slate-700 dark:text-slate-300 block mb-1.5">
+            Username
+          </label>
+          <Input
             type="text"
             placeholder="Username"
             required
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="w-full rounded-md border placeholder:text-gray-400  border-border dark:border-dark_border border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition  focus:border-primary focus-visible:shadow-none dark:border-border_color dark:text-white dark:focus:border-primary"
           />
         </div>
-        <div className="mb-[22px]">
-          <input
+
+        <div>
+          <label className="text-xs font-medium text-slate-700 dark:text-slate-300 block mb-1.5">
+            Password
+          </label>
+          <Input
             type="password"
             required
             value={password}
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded-md border border-border dark:border-dark_border border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition  focus:border-primary focus-visible:shadow-none dark:border-border_color dark:text-white dark:focus:border-primary"
           />
         </div>
-        <div className="mb-9">
-          <button
-            type="submit"
-            className="flex w-full cursor-pointer items-center justify-center rounded-md border border-primary bg-primary hover:bg-darkprimary dark:hover:bg-darkprimary! px-5 py-3 text-base text-white transition duration-300 ease-in-out "
-          >
-            Sign In
-            {/* {loading && <Loader />} */}
-          </button>
-        </div>
+
+        <Button
+          type="submit"
+          disabled={loading}
+          className="w-full h-11 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-sm"
+        >
+          {loading ? "Signing in..." : "Sign In"}
+        </Button>
       </form>
 
-      <Link
-        href="/"
-        className="mb-2 inline-block text-base text-dark hover:text-primary dark:text-white dark:hover:text-primary"
-      >
-        Forget Password?
-      </Link>
-      <p className="text-body-secondary text-base">
-        Not a member yet?{" "}
-        <Link href="/" className="text-primary hover:underline">
-          Sign Up
+      <div className="mt-4 text-center">
+        <Link
+          href="/"
+          className="text-xs text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+        >
+          Forgot your password?
         </Link>
-      </p>
-    </>
+      </div>
+    </div>
   );
 };
 

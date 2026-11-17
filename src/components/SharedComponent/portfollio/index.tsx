@@ -3,11 +3,15 @@
 import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import {
   portfolioCategories,
   portfolioProjects,
   type PortfolioCategorySlug,
 } from "@/data/portfolioProjects";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 const Portfolio = () => {
   const [activeCategory, setActiveCategory] =
@@ -26,81 +30,100 @@ const Portfolio = () => {
   return (
     <section
       id="portfolio"
-      className="bg-[#F8F9FA] dark:bg-[#101622] border-t border-b border-white/10 py-16 lg:py-24"
+      className="py-20 lg:py-28 bg-white dark:bg-slate-950 border-t border-slate-200/60 dark:border-slate-800/60 transition-colors duration-200"
     >
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-4 lg:px-8">
-        <header className="flex flex-col gap-4 text-center">
-          <div className="flex items-center justify-center gap-2 text-sm font-medium text-primary">
-            <span className="h-3 w-3 rounded-full bg-success" />
-            build everything
-          </div>
-          <h2 className="text-3xl font-bold text-[#212529] dark:text-white md:text-4xl">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 px-4 sm:px-6 lg:px-8">
+        <header className="flex flex-col items-center gap-4 text-center max-w-2xl mx-auto" data-aos="fade-up" data-aos-duration="600">
+          <Badge variant="secondary" className="px-3.5 py-1 text-xs font-semibold uppercase tracking-wider">
+            Featured Projects
+          </Badge>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight tracking-tight">
             Explore My Projects Showcase
           </h2>
-          <p className="mx-auto max-w-2xl text-base text-[#495057] dark:text-white/70">
-            A curated look at dashboards, mobile experiences, websites, and AI
-            automations I’ve delivered across industries.
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+            A curated collection of web apps, high-performance dashboards, mobile experiences, and AI automations delivered for clients worldwide.
           </p>
         </header>
 
-        <div className="no-scrollbar -mx-4 flex gap-3 overflow-x-auto px-4">
-          {portfolioCategories.map((category) => (
-            <button
-              key={category.slug}
-              className={`h-9 shrink-0 rounded-full px-5 text-sm font-medium transition ${
-                activeCategory === category.slug
-                  ? "bg-primary text-white"
-                  : "bg-gray-200 text-[#495057] dark:bg-gray-700 dark:text-white/70"
-              }`}
-              type="button"
-              onClick={() => setActiveCategory(category.slug)}
-              aria-pressed={activeCategory === category.slug}
-            >
-              {category.label}
-            </button>
-          ))}
+        {/* Category Pills */}
+        <div className="flex flex-wrap items-center justify-center gap-2" data-aos="fade-up" data-aos-duration="600">
+          {portfolioCategories.map((category) => {
+            const isActive = activeCategory === category.slug;
+            return (
+              <Button
+                key={category.slug}
+                variant={isActive ? "default" : "secondary"}
+                size="sm"
+                className={`rounded-full px-5 text-sm font-medium transition-colors ${
+                  isActive
+                    ? "bg-blue-600 text-white shadow-sm"
+                    : "bg-slate-100 dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
+                }`}
+                onClick={() => setActiveCategory(category.slug)}
+              >
+                {category.label}
+              </Button>
+            );
+          })}
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {filteredProjects.map((project) => (
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {filteredProjects.map((project, idx) => (
             <Link
               key={project.id}
               href={`/portfolio/${project.id}`}
+              className="group block"
             >
-              <article className="flex flex-col overflow-hidden rounded-2xl border border-gray-200/80 bg-white shadow-lg dark:border-gray-800/80 dark:bg-gray-900/60 cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-                <div className="relative aspect-video w-full overflow-hidden">
+              <Card
+                data-aos="fade-up"
+                data-aos-delay={`${(idx % 3) * 100}`}
+                data-aos-duration="600"
+                className="card-hover-effect flex flex-col h-full overflow-hidden rounded-3xl border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-900/90 shadow-sm"
+              >
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
                   <Image
                     src={project.image}
                     alt={project.alt}
                     fill
-                    className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                    className="object-cover w-full h-full transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
+                  <div className="absolute top-4 right-4 h-9 w-9 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md flex items-center justify-center text-slate-800 dark:text-white shadow-sm transition-transform duration-200 group-hover:scale-110">
+                    <ArrowUpRight className="h-4 w-4" />
+                  </div>
                 </div>
-                <div className="flex grow flex-col gap-4 p-6">
-                  <div>
-                    <h3 className="text-xl font-semibold text-[#212529] dark:text-white">
+
+                <div className="flex grow flex-col justify-between p-6 gap-4">
+                  <div className="space-y-2">
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                       {project.title}
                     </h3>
-                    <p className="mt-2 text-sm text-[#495057] dark:text-white/70">
+                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-2">
                       {project.description}
                     </p>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-primary dark:bg-blue-500/10 dark:text-blue-200"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="mt-2 flex h-11 w-full items-center justify-center rounded-lg bg-primary text-base font-medium text-white shadow-md transition hover:bg-primary/90">
-                    View Case Study
+
+                  <div className="space-y-4 pt-2">
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.tags.map((tag) => (
+                        <Badge
+                          key={tag}
+                          variant="secondary"
+                          className="text-[11px] font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-none"
+                        >
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+
+                    <div className="w-full flex items-center justify-between text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline">
+                      <span>View Case Study</span>
+                      <ArrowUpRight className="h-4 w-4" />
+                    </div>
                   </div>
                 </div>
-              </article>
+              </Card>
             </Link>
           ))}
         </div>

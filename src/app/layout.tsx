@@ -13,6 +13,7 @@ import { LoadingProvider } from "./context/LoadingContext";
 import PreLoader from "@/components/Common/PreLoader";
 import ErrorBoundary from "@/components/Common/ErrorBoundary";
 import ClientProviders from "@/components/Common/ClientProviders";
+import { Toaster } from "@/components/ui/sonner";
 
 // BlinkMacSystemFont configuration - handled via CSS
 
@@ -102,6 +103,7 @@ export default function RootLayout({
                       <Footer />
                     </Aoscompo>
                     <ScrollToTop />
+                    <Toaster position="top-right" />
                   </ThemeProvider>
                 </SessionProviderComp>
               </AuthDialogProvider>

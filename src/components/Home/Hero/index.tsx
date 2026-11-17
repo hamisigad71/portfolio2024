@@ -1,91 +1,144 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 const Hero = () => {
   return (
-    <section className="relative pt-20 lg:pt-32 xl:pt-40 2xl:pt-48 pb-16 lg:pb-20 xl:pb-24 2xl:pb-32 bg-white dark:bg-darklight">
-      <div className="container mx-auto max-w-7xl xl:max-w-6xl 2xl:max-w-7xl px-4 lg:px-6 xl:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 2xl:gap-20 items-center">
-          {/* Left Content */}
+    <section className="relative pt-24 lg:pt-36 xl:pt-44 pb-16 lg:pb-24 overflow-hidden bg-gradient-to-b from-slate-50/50 via-white to-slate-50/30 dark:from-slate-950 dark:via-slate-900/60 dark:to-slate-950">
+      {/* Subtle Apple-style background blur glow */}
+      <div
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-blue-500/10 dark:bg-blue-600/15 rounded-full blur-3xl pointer-events-none -z-10"
+        aria-hidden="true"
+      />
+
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          {/* Left Content (7 cols) */}
           <div
-            className="space-y-6 lg:space-y-8 xl:space-y-10 flex flex-col items-start justify-center"
-            data-aos="fade-right"
-            data-aos-delay="200"
-            data-aos-duration="1000"
+            className="lg:col-span-7 space-y-6 lg:space-y-8 flex flex-col items-start justify-center"
+            data-aos="fade-up"
+            data-aos-duration="600"
           >
-            <div className="flex gap-2 items-center pt-10">
-              <span className="w-3 h-3 rounded-full bg-success"></span>
-              <span className="text-overline text-midnight_text dark:text-white/60">
-                Online 24/7
-              </span>
+            {/* Status Badge */}
+            <div className="pt-4">
+              <Badge
+                variant="glass"
+                className="px-3.5 py-1.5 rounded-full gap-2 border-emerald-500/20 text-emerald-800 dark:text-emerald-300 font-medium shadow-xs"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                Available for New Projects • 2024
+              </Badge>
             </div>
 
-            <h1 className="text-midnight_text font-bold dark:text-white text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl lg:leading-tight xl:leading-tight 2xl:leading-tight tracking-tight">
-              Delivering Clean Code, Sharp Design, Real Results
+            {/* Main Headline */}
+            <h1 className="text-slate-900 font-bold dark:text-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight">
+              Delivering <span className="text-blue-600 dark:text-blue-500">Clean Code</span>, Sharp Design, Real Results.
             </h1>
 
-            <p className="text-body-large text-grey dark:text-white/75 max-w-lg lg:max-w-md xl:max-w-xl">
-              I'm Daysman Gad, a developer who blends AI, code, and digital
-              strategy to create smart, scalable solutions for business.
+            {/* Description */}
+            <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg lg:text-xl max-w-xl leading-relaxed">
+              I'm Daysman Gad, a full-stack engineer and design enthusiast who blends modern frameworks, fluid motion, and digital strategy to build software people love using.
             </p>
 
-            <div className="w-full flex justify-end lg:justify-start">
-              <a
-                href="#learn-more"
-                className="btn-text-primary py-3 px-8 lg:py-4 lg:px-10 xl:py-4 xl:px-12 2xl:py-5 2xl:px-14 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300"
+            {/* CTAs using Shadcn Button */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <Button
+                size="lg"
+                asChild
+                className="rounded-xl bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 group"
               >
-                Get Started
-              </a>
+                <a href="#services">
+                  Explore Services
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+                </a>
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                asChild
+                className="rounded-xl border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800"
+              >
+                <a href="#contact">Get in Touch</a>
+              </Button>
             </div>
 
-            <div className="flex items-center gap-4 lg:gap-5 xl:gap-6 2xl:gap-7 pt-4 lg:pt-6 xl:pt-8 2xl:pt-10">
-              <div className="flex items-center">
+            {/* Social Proof / Avatars */}
+            <div className="flex items-center gap-4 pt-4 border-t border-slate-200/80 dark:border-slate-800/80 w-full sm:w-auto">
+              <div className="flex items-center -space-x-2.5">
                 <Image
                   src="https://i.pinimg.com/736x/a1/3f/e5/a13fe593cd044397afc8ce5d47598333.jpg"
-                  alt="hero-image"
-                  width={40}
-                  height={40}
-                  quality={100}
-                  className="w-10 h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 2xl:w-16 2xl:h-16 rounded-full border-2 border-white"
+                  alt="Client avatar"
+                  width={44}
+                  height={44}
+                  quality={90}
+                  className="w-10 h-10 rounded-full border-2 border-white dark:border-slate-900 object-cover shadow-xs"
                 />
                 <Image
                   src="/images/hero/hero-profile-3.jpg"
-                  alt="hero-image"
-                  width={40}
-                  height={40}
-                  quality={100}
-                  className="w-10 h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 2xl:w-16 2xl:h-16 rounded-full border-2 border-white -ml-3 lg:-ml-4 xl:-ml-5 2xl:-ml-6"
+                  alt="Client avatar"
+                  width={44}
+                  height={44}
+                  quality={90}
+                  className="w-10 h-10 rounded-full border-2 border-white dark:border-slate-900 object-cover shadow-xs"
                 />
+                <div className="w-10 h-10 rounded-full border-2 border-white dark:border-slate-900 bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 flex items-center justify-center text-xs font-bold shadow-xs">
+                  50+
+                </div>
               </div>
               <div>
-                <p className="text-body text-grey dark:text-white/75 max-w-xs lg:max-w-sm xl:max-w-md 2xl:max-w-lg">
-                  Need help?{" "}
-                  <Link href="#" className="link-primary">
-                    Contact my team
-                  </Link>{" "}
-                  Tell us about your project
+                <p className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-200">
+                  Trusted by ambitious founders & agencies
+                </p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  Over 50+ successful web apps delivered
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Right Image */}
+          {/* Right Image with Apple Glass card badge (5 cols) */}
           <div
-            className="relative flex justify-center lg:justify-end"
+            className="lg:col-span-5 relative flex justify-center"
             data-aos="fade-left"
-            data-aos-delay="200"
-            data-aos-duration="1000"
+            data-aos-duration="600"
           >
-            <div className="relative w-full max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl before:absolute before:content-[''] before:bg-[url('/images/hero/line-leyar.svg')] before:bg-no-repeat before:right-0 before:top-0 before:h-24 lg:before:h-32 xl:before:h-40 2xl:before:h-48 before:w-52 lg:before:w-64 xl:before:w-80 2xl:before:w-96 before:-z-10 before:translate-x-1/4 before:-translate-y-1/2 lg:before:block before:hidden after:absolute after:content-[''] after:bg-[url('/images/hero/round-leyar.svg')] after:bg-no-repeat after:left-0 after:bottom-0 after:h-24 lg:after:h-32 xl:after:h-40 2xl:after:h-48 after:w-24 lg:after:w-32 xl:after:w-40 2xl:after:w-48 after:-z-10 after:-translate-x-1/4 after:translate-y-1/4 lg:after:block after:hidden">
-              <Image
-                src="https://i.pinimg.com/736x/5d/19/fa/5d19fa202c73792fc36d12df1aa5ab1a.jpg"
-                alt="hero-image"
-                width={600}
-                height={450}
-                quality={100}
-                className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-              />
+            <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-none">
+              {/* Outer decorative ring */}
+              <div className="relative rounded-3xl p-2 bg-gradient-to-tr from-blue-600/20 via-purple-500/10 to-transparent dark:from-blue-500/20 shadow-2xl">
+                <div className="overflow-hidden rounded-2xl bg-slate-100 dark:bg-slate-800 aspect-[4/3] sm:aspect-[4/3]">
+                  <Image
+                    src="https://i.pinimg.com/736x/5d/19/fa/5d19fa202c73792fc36d12df1aa5ab1a.jpg"
+                    alt="Daysman Gad workspace"
+                    width={700}
+                    height={525}
+                    quality={95}
+                    priority
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+              </div>
+
+              {/* Floating Glass Stats Badge */}
+              <div className="absolute -bottom-6 -left-4 sm:left-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800/80 p-4 rounded-2xl shadow-xl flex items-center gap-3">
+                <div className="p-2.5 rounded-xl bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400">
+                  <Sparkles className="h-5 w-5" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-1">
+                    <span className="text-lg font-bold text-slate-900 dark:text-white">99.8%</span>
+                    <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+                  </div>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+                    Satisfaction & Quality Score
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

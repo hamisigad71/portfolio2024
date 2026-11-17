@@ -4,7 +4,7 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const useStaticExport = process.env.NEXT_STATIC_EXPORT === "true";
 
 const nextConfig = {
-  output: "static",
+  ...(useStaticExport ? { output: "export" } : {}),
   trailingSlash: true,
   ...(basePath
     ? {

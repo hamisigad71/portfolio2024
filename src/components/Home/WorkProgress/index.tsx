@@ -1,86 +1,83 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-// Local progress data
+import { Badge } from "@/components/ui/badge";
+
 const ProgressData = [
-  { title: "Full-stack development", Progress: 95 },
-  { title: "AI agent development", Progress: 84 },
-  { title: "UI & Visual Design", Progress: 90 },
+  { title: "Full-Stack Web Engineering", Progress: 95 },
+  { title: "AI Agents & Automation", Progress: 88 },
+  { title: "Design Systems & UI Craft", Progress: 92 },
 ];
 
-// Define the interface for ProgressItem
 interface ProgressItem {
   title: string;
   Progress: number;
 }
 
-const Progresswork = ({ isColorMode }: { isColorMode: Boolean }) => {
-  const [progressValues, setProgressValues] = useState<ProgressItem[]>([]); // Initialize with ProgressItem[]
+const Progresswork = ({ isColorMode }: { isColorMode: boolean }) => {
+  const [progressValues, setProgressValues] = useState<ProgressItem[]>([]);
+
   useEffect(() => {
-    // Fetch progress data or use static data (Progress array)
     setProgressValues(ProgressData);
   }, []);
 
   return (
     <section
-      className={`scroll-mt-25 ${
+      className={`py-20 lg:py-28 scroll-mt-24 transition-colors duration-200 ${
         isColorMode
-          ? "dark:bg-darklight bg-section"
-          : "dark:bg-darkmode bg-white"
+          ? "bg-slate-50 dark:bg-slate-900/60"
+          : "bg-white dark:bg-slate-950"
       }`}
       id="about"
     >
-      <div className="container mx-auto max-w-6xl px-4">
-        <div className="grid md:grid-cols-12 items-center gap-7">
-          <div className="md:col-span-6">
-            <Image
-              src="/images/work-progress/progress-work.png"
-              alt="logo"
-              width={375}
-              height={0}
-              quality={100}
-              style={{ width: "100%", height: "auto" }}
-              className="md:block hidden"
-            />
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid md:grid-cols-12 items-center gap-10 lg:gap-16">
+          <div className="md:col-span-6 flex justify-center">
+            <div className="relative rounded-3xl p-3 bg-gradient-to-tr from-slate-200/50 to-slate-100/30 dark:from-slate-800/50 dark:to-slate-900/30 border border-slate-200/60 dark:border-slate-800/60 shadow-xl">
+              <Image
+                src="/images/work-progress/progress-work.png"
+                alt="Work and progress illustration"
+                width={520}
+                height={400}
+                quality={95}
+                className="w-full h-auto rounded-2xl object-cover"
+              />
+            </div>
           </div>
+
           <div
             className="md:col-span-6 text-left flex flex-col items-start"
             data-aos="fade-left"
-            data-aos-delay="200"
-            data-aos-duration="1000"
+            data-aos-duration="600"
           >
-            <div className="flex gap-2 justify-start">
-              <span className="w-3 h-3 rounded-full bg-success"></span>
-              <span className="font-medium text-midnight_text text-sm dark:text-white/50">
-                build everything
-              </span>
-            </div>
-            <h2 className="pt-9 pb-4 text-midnight_text font-bold dark:text-white items-center justify-center  text-3xl max-w-xl">
+            <Badge variant="secondary" className="px-3.5 py-1 text-xs font-semibold uppercase tracking-wider mb-4">
+              Core Capabilities
+            </Badge>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight mb-5">
               Turning ideas into polished, high-performance digital products
             </h2>
-            <p className="text-gray dark:text-white/70 text-base font-semibold max-w-2xl">
-              I build fast, modern web experiences, create smart AI agents that
-              automate business tasks, and design clean, user-friendly
-              interfaces with strong visual appeal. My work combines technology
-              and design to deliver simple, effective digital solutions.
+
+            <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed mb-8">
+              I build fast, modern web experiences, create smart AI agents that automate business tasks, and design clean, user-friendly interfaces with rigorous visual craft. Every component is tuned for performance, accessibility, and delight.
             </p>
 
-            <div className="block mx-auto pt-12 w-full">
+            <div className="space-y-6 w-full">
               {progressValues.map((item, index) => (
-                <div key={index} className="progress_bar_item mb-8 w-full">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-base font-semibold text-midnight_text dark:text-white">
+                <div key={index} className="w-full space-y-2">
+                  <div className="flex items-center justify-between text-sm sm:text-base font-semibold">
+                    <span className="text-slate-800 dark:text-slate-200">
                       {item.title}
                     </span>
-                    <span className="item_value text-base font-semibold text-primary">
+                    <span className="text-blue-600 dark:text-blue-400 font-bold">
                       {item.Progress}%
                     </span>
                   </div>
-                  <div className="relative h-3 w-full bg-gray-200 dark:bg-darkmode rounded-full overflow-hidden">
+                  <div className="relative h-2.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden border border-slate-200/60 dark:border-slate-700/60">
                     <div
-                      className="progress absolute left-0 top-0 h-full bg-linear-to-r from-primary to-blue-500 rounded-full shadow-md transition-all duration-700 ease-in-out"
+                      className="absolute left-0 top-0 h-full bg-gradient-to-r from-blue-600 to-indigo-500 rounded-full transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]"
                       style={{ width: `${item.Progress}%` }}
-                    ></div>
+                    />
                   </div>
                 </div>
               ))}

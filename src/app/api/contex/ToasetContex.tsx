@@ -1,13 +1,9 @@
 "use client";
 
-import { Toaster } from "react-hot-toast";
+import { Toaster } from "@/components/ui/sonner";
 
 const ToasterContext = () => {
-  return (
-    <div className="z-99999">
-      <Toaster />
-    </div>
-  );
+  return <Toaster position="top-right" />;
 };
 
 export default ToasterContext;

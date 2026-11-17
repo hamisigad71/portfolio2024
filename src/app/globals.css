@@ -165,17 +165,21 @@
     --z-index-2: 2;
     --z-index-999: 999;
 
-    --color-primary: #2f73f2;
-    --color-secondary: #547593;
-    --color-midnight_text: #102d47;
-    --color-grey: #668199;
-    --color-border: #ccd7e1;
-    --color-success: #3cd278;
+    --color-primary: #2563eb;
+    --color-secondary: #475569;
+    --color-midnight_text: #0f172a;
+    --color-grey: #64748b;
+    --color-border: #e2e8f0;
+    --color-success: #10b981;
     --color-section: #f8fafc;
-    --color-darkmode: #081738;
-    --color-darklight: #000f30;
-    --color-dark_border: #224767;
-    --color-Sky-blue-mist: #c0d5fb;
+    --color-darkmode: #0b0f19;
+    --color-darklight: #0f172a;
+    --color-dark_border: #1e293b;
+    --color-Sky-blue-mist: #dbeafe;
+
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 
     --background-image-gradient-radial: radial-gradient(
         var(--tw-gradient-stops)
@@ -963,10 +967,55 @@ body {
 
 /* Smooth transitions for dismissible elements */
 .dismissible {
-    transition: all 0.3s ease-out;
+    transition: transform 0.25s var(--ease-out), opacity 0.25s var(--ease-out);
 }
 
 .dismissible.dismissed {
     transform: translateX(100%);
     opacity: 0;
+}
+
+/* Emil Kowalski Design Engineering & Apple Motion Foundations */
+button:not([disabled]):active,
+.press-feedback:active {
+    transform: scale(0.97);
+}
+
+button:not([disabled]),
+.press-feedback {
+    transition: transform 150ms var(--ease-out), background-color 150ms var(--ease-out), border-color 150ms var(--ease-out), color 150ms var(--ease-out), box-shadow 150ms var(--ease-out);
+}
+
+/* Apple Translucent Surfaces */
+.glass-surface {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(226, 232, 240, 0.7);
+}
+
+.dark .glass-surface {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(30, 41, 59, 0.7);
+}
+
+/* Touch device hover gating - avoid sticky hovers on mobile */
+@media (hover: hover) and (pointer: fine) {
+    .card-hover-effect:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.08);
+    }
+    .dark .card-hover-effect:hover {
+        box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.4);
+    }
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
