@@ -27,17 +27,17 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Daysman Gad | Full-Stack Developer & AI Specialist",
+    default: "Daysman Gad | Full-Stack Software Engineer",
     template: "%s | Daysman Gad",
   },
   description:
-    "Delivering clean code, sharp design, and real results. High-performance web apps, AI agents, and intuitive digital experiences.",
+    "Software engineer specializing in Next.js, TypeScript, and scalable architectures. Building robust web systems, high-performance APIs, and production-ready applications.",
   openGraph: {
-    title: "Daysman Gad | Full-Stack Developer & AI Specialist",
+    title: "Daysman Gad | Full-Stack Software Engineer",
     description:
-      "Delivering clean code, sharp design, and real results. High-performance web apps, AI agents, and intuitive digital experiences.",
+      "Software engineer specializing in Next.js, TypeScript, and scalable architectures. Building robust web systems, high-performance APIs, and production-ready applications.",
     url: siteUrl,
-    siteName: "Daysman Gad Portfolio",
+    siteName: "Daysman Gad — Software Engineer",
     locale: "en_US",
     type: "website",
     images: [
@@ -46,15 +46,15 @@ export const metadata: Metadata = {
         width: 736,
         height: 620,
         type: "image/jpeg",
-        alt: "Daysman Gad - Full-Stack Developer & AI Specialist",
+        alt: "Daysman Gad - Full-Stack Software Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Daysman Gad | Full-Stack Developer & AI Specialist",
+    title: "Daysman Gad | Full-Stack Software Engineer",
     description:
-      "Delivering clean code, sharp design, and real results. High-performance web apps, AI agents, and intuitive digital experiences.",
+      "Software engineer specializing in Next.js, TypeScript, and scalable architectures. Building robust web systems, high-performance APIs, and production-ready applications.",
     images: ["/og-image.jpg"],
   },
 };
