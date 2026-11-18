@@ -1,31 +1,36 @@
-import React, { FC } from 'react'
-import Link from 'next/link'
+import React, { FC } from "react";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 interface BreadcrumbProps {
-  links: { href: string; text: string }[]
+  links: { href: string; text: string }[];
 }
 
 const Breadcrumb: FC<BreadcrumbProps> = ({ links }) => {
-  const lastIndex = links.length - 1
+  const lastIndex = links.length - 1;
   return (
-    <div className='flex items-baseline flex-wrap justify-center my-[0.9375rem] mx-0'>
+    <nav aria-label="Breadcrumb" className="flex items-center flex-wrap justify-center gap-1.5 my-3 text-sm font-medium">
       {links.map((link, index) => (
         <React.Fragment key={index}>
           {index !== lastIndex ? (
-            <Link
-              href={link.href}
-              className="no-underline flex items-center text-midnight_text dark:text-white/70 font-normal md:text-xl text-lg hover:underline after:relative after:content-[''] after:ml-2.5 after:mr-[0.8125rem] after:my-0 after:inline-block after:top-[0.0625rem] after:w-2 after:h-2 after:border-r-2 after:border-solid after:border-b-2 after:border-midnight_text dark:after:border-white after:-rotate-45">
-              {link.text}
-            </Link>
+            <>
+              <Link
+                href={link.href}
+                className="text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition-colors"
+              >
+                {link.text}
+              </Link>
+              <ChevronRight className="h-4 w-4 text-slate-400 dark:text-slate-600 shrink-0" />
+            </>
           ) : (
-            <span className='dark:text-white text-midnight_text md:text-xl text-lg mx-2.5'>
+            <span className="text-slate-900 dark:text-white font-semibold">
               {link.text}
             </span>
           )}
         </React.Fragment>
       ))}
-    </div>
-  )
-}
+    </nav>
+  );
+};
 
-export default Breadcrumb
+export default Breadcrumb;

@@ -14,6 +14,34 @@ import PreLoader from "@/components/Common/PreLoader";
 import ErrorBoundary from "@/components/Common/ErrorBoundary";
 import ClientProviders from "@/components/Common/ClientProviders";
 import { Toaster } from "@/components/ui/sonner";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://daysmangad.com"
+  ),
+  title: {
+    default: "Daysman Gad | Full-Stack Developer & AI Specialist",
+    template: "%s | Daysman Gad",
+  },
+  description:
+    "Delivering clean code, sharp design, and real results. High-performance web apps, AI agents, and intuitive digital experiences.",
+  openGraph: {
+    title: "Daysman Gad | Full-Stack Developer & AI Specialist",
+    description:
+      "Delivering clean code, sharp design, and real results. High-performance web apps, AI agents, and intuitive digital experiences.",
+    url: "/",
+    siteName: "Daysman Gad Portfolio",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Daysman Gad | Full-Stack Developer & AI Specialist",
+    description:
+      "Delivering clean code, sharp design, and real results. High-performance web apps, AI agents, and intuitive digital experiences.",
+  },
+};
 
 // BlinkMacSystemFont configuration - handled via CSS
 

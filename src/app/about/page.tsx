@@ -3,100 +3,161 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Mail, GraduationCap, Briefcase, Code, ArrowRight, ExternalLink } from "lucide-react";
+import { Icon } from "@iconify/react";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 const AboutMe = () => {
   return (
-    <section className="bg-section dark:bg-darklight min-h-screen py-16 lg:py-24">
-      <div className="container mx-auto max-w-4xl px-4 flex flex-col items-center">
-        <div className="flex flex-col md:flex-row items-center gap-8 mb-12">
-            <div className="flex-shrink-0">
-  <Image
-    src="https://i.pinimg.com/736x/2b/4c/4b/2b4c4bf919253ca7b74f2b649df09d4a.jpg"
-    alt="Professional Avatar"
-    width={160}
-    height={160}
-    priority
-    className="
-      rounded-full
-      border-[3px] border-primary/80
-      shadow-xl
-      object-cover
-      bg-gray-100
-    "
-  />
-</div>
+    <section className="bg-slate-50/70 dark:bg-slate-950 min-h-screen py-20 lg:py-28 transition-colors duration-200">
+      <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-12">
+        {/* Header Profile Card */}
+        <Card className="p-8 sm:p-12 rounded-3xl bg-white dark:bg-slate-900/90 border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
+          <div className="relative w-36 h-36 rounded-full overflow-hidden border-4 border-blue-600/20 shadow-xl shrink-0">
+            <Image
+              src="https://i.pinimg.com/736x/2b/4c/4b/2b4c4bf919253ca7b74f2b649df09d4a.jpg"
+              alt="Daysman Gad portrait"
+              fill
+              priority
+              className="object-cover"
+            />
+          </div>
 
-          <div className="text-center md:text-left">
-            <h1 className="text-3xl md:text-4xl font-bold text-midnight_text dark:text-white mb-2">
-               Daysman Gad
+          <div className="space-y-3">
+            <Badge variant="secondary" className="px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+              Senior Full-Stack & AI Engineer
+            </Badge>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white tracking-tight">
+              Daysman Gad
             </h1>
-            <h2 className="text-xl font-semibold text-primary mb-2">
-              Full Stack Developer & AI Enthusiast
-            </h2>
-            <p className="text-base text-gray-700 dark:text-white/70 max-w-xl">
-              Passionate about building scalable web applications and intelligent automation solutions. I combine strong engineering skills with a creative mindset to deliver impactful digital products for businesses and users.
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
+              Specializing in resilient web applications, custom AI agent architectures, and polished interactive frontends. I blend systems engineering with deep design sensitivity to deliver software that feels natural and fast.
             </p>
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 pt-2">
+              <Button size="sm" asChild className="rounded-full bg-blue-600 hover:bg-blue-700 text-white">
+                <a href="mailto:hamisigad77@gmail.com" className="inline-flex items-center gap-2">
+                  <Mail className="w-4 h-4" />
+                  <span>Email Me</span>
+                </a>
+              </Button>
+              <Button size="sm" variant="outline" asChild className="rounded-full">
+                <a href="https://github.com/hamisimwinyi" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                  <Icon icon="mdi:github" className="w-4 h-4" />
+                  <span>GitHub</span>
+                </a>
+              </Button>
+              <Button size="sm" variant="outline" asChild className="rounded-full">
+                <a href="https://www.linkedin.com/in/hamisimwinyi" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                  <Icon icon="mdi:linkedin" className="w-4 h-4" />
+                  <span>LinkedIn</span>
+                </a>
+              </Button>
+            </div>
           </div>
-        </div>
+        </Card>
 
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <div className="bg-white dark:bg-darkmode rounded-lg shadow-md p-6">
-            <h3 className="text-lg font-bold text-primary mb-2">Education</h3>
-            <ul className="list-disc list-inside text-gray-700 dark:text-white/70">
-              <li>BSc. Computer Science, University of Nairobi (2018-2022)</li>
-              <li>Certified AWS Cloud Practitioner</li>
-              <li>React & Node.js Bootcamp, freeCodeCamp</li>
+        {/* Education & Experience Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <Card className="p-8 rounded-3xl bg-white dark:bg-slate-900/90 border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 rounded-xl bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400">
+                <GraduationCap className="w-6 h-6" />
+              </div>
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                Education & Credentials
+              </h2>
+            </div>
+            <ul className="space-y-3 pt-2 text-sm text-slate-600 dark:text-slate-300">
+              <li className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+                <p className="font-semibold text-slate-900 dark:text-white">BSc. Computer Science</p>
+                <p className="text-xs text-slate-500">University of Nairobi (2018 - 2022)</p>
+              </li>
+              <li className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+                <p className="font-semibold text-slate-900 dark:text-white">AWS Cloud Practitioner Certified</p>
+                <p className="text-xs text-slate-500">Cloud Architecture, Security & IAM</p>
+              </li>
+              <li className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+                <p className="font-semibold text-slate-900 dark:text-white">Full Stack Engineering Intensive</p>
+                <p className="text-xs text-slate-500">React, Node.js, and Modern TypeScript Systems</p>
+              </li>
             </ul>
-          </div>
-          <div className="bg-white dark:bg-darkmode rounded-lg shadow-md p-6">
-            <h3 className="text-lg font-bold text-primary mb-2">Work Experience</h3>
-            <ul className="list-disc list-inside text-gray-700 dark:text-white/70">
-              <li>Software Engineer, Safaricom PLC (2023-Present)</li>
-              <li>Full Stack Developer, Moringa School (2022-2023)</li>
-              <li>Freelance AI Agent Developer (2021-Present)</li>
+          </Card>
+
+          <Card className="p-8 rounded-3xl bg-white dark:bg-slate-900/90 border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400">
+                <Briefcase className="w-6 h-6" />
+              </div>
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                Work Experience
+              </h2>
+            </div>
+            <ul className="space-y-3 pt-2 text-sm text-slate-600 dark:text-slate-300">
+              <li className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+                <p className="font-semibold text-slate-900 dark:text-white">Software Engineer • Safaricom PLC</p>
+                <p className="text-xs text-slate-500">2023 - Present • Cloud pipelines & distributed services</p>
+              </li>
+              <li className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+                <p className="font-semibold text-slate-900 dark:text-white">Full Stack Developer • Moringa School</p>
+                <p className="text-xs text-slate-500">2022 - 2023 • Modern JavaScript and backend curriculum</p>
+              </li>
+              <li className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+                <p className="font-semibold text-slate-900 dark:text-white">AI Automation Specialist • Independent</p>
+                <p className="text-xs text-slate-500">2021 - Present • Autonomous agent workflows & LLM integration</p>
+              </li>
             </ul>
-          </div>
+          </Card>
         </div>
 
-        <div className="w-full bg-white dark:bg-darkmode rounded-lg shadow-md p-6 mb-12">
-          <h3 className="text-lg font-bold text-primary mb-2">Skills & Technologies</h3>
-          <div className="flex flex-wrap gap-3">
-            <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-sm font-medium">React</span>
-            <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-sm font-medium">Node.js</span>
-            <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-sm font-medium">TypeScript</span>
-            <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-sm font-medium">Python</span>
-            <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-sm font-medium">Next.js</span>
-            <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-sm font-medium">AWS</span>
-            <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-sm font-medium">MongoDB</span>
-            <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-sm font-medium">LangChain</span>
-            <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-sm font-medium">Docker</span>
-            <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-sm font-medium">Framer Motion</span>
+        {/* Technical Skills */}
+        <Card className="p-8 rounded-3xl bg-white dark:bg-slate-900/90 border-slate-200/80 dark:border-slate-800 shadow-sm space-y-6">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-xl bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400">
+              <Code className="w-6 h-6" />
+            </div>
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+              Skills & Core Technologies
+            </h2>
           </div>
-        </div>
-
-        <div className="w-full bg-white dark:bg-darkmode rounded-lg shadow-md p-6">
-          <h3 className="text-lg font-bold text-primary mb-2">About Me</h3>
-          <p className="text-base text-gray-700 dark:text-white/70 mb-4">
-            I thrive in collaborative environments and enjoy solving complex problems with code. My journey in tech started with curiosity and has grown into a career focused on building products that make a difference. I am always eager to learn new technologies and contribute to innovative teams.
-          </p>
-          <p className="text-base text-gray-700 dark:text-white/70 mb-4">
-            Outside of work, I love mentoring junior developers, participating in hackathons, and exploring the latest trends in AI and cloud computing. I believe in continuous growth and strive to deliver excellence in every project I take on.
-          </p>
-          <div className="flex flex-wrap gap-4 mt-6">
-            <a href="mailto:hamisi.mwinyi@email.com" className="text-primary underline">Email Me</a>
-            <a href="https://www.linkedin.com/in/hamisimwinyi" target="_blank" rel="noopener" className="text-primary underline">LinkedIn</a>
-            <a href="https://github.com/hamisimwinyi" target="_blank" rel="noopener" className="text-primary underline">GitHub</a>
+          <div className="flex flex-wrap gap-2.5">
+            {[
+              "React 19",
+              "Next.js 15",
+              "TypeScript",
+              "Tailwind CSS v4",
+              "Shadcn UI",
+              "Node.js",
+              "Python",
+              "FastAPI",
+              "PostgreSQL",
+              "Docker",
+              "AWS",
+              "LangChain",
+              "Motion",
+              "Sonner",
+              "REST & GraphQL",
+            ].map((tech) => (
+              <Badge
+                key={tech}
+                variant="secondary"
+                className="px-4 py-1.5 text-xs sm:text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+              >
+                {tech}
+              </Badge>
+            ))}
           </div>
-        </div>
+        </Card>
 
-        {/* View More Button */}
-        <div className="w-full mt-12 flex justify-center">
-          <Link 
-            href="/about-company" 
-            className="btn-text-primary px-8 py-3 lg:py-4 lg:px-10 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 shadow-md"
-          >
-            View More
-          </Link>
+        {/* CTA */}
+        <div className="text-center pt-6">
+          <Button size="lg" asChild className="rounded-xl px-8 bg-blue-600 hover:bg-blue-700 text-white shadow-md">
+            <Link href="/about-company" className="inline-flex items-center gap-2">
+              <span>Learn About the Company</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>
