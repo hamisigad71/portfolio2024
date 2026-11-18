@@ -16,10 +16,16 @@ import ClientProviders from "@/components/Common/ClientProviders";
 import { Toaster } from "@/components/ui/sonner";
 import { Metadata } from "next";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "https://portfolio2024-six-eosin.vercel.app");
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://daysmangad.com"
-  ),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Daysman Gad | Full-Stack Developer & AI Specialist",
     template: "%s | Daysman Gad",
@@ -30,16 +36,26 @@ export const metadata: Metadata = {
     title: "Daysman Gad | Full-Stack Developer & AI Specialist",
     description:
       "Delivering clean code, sharp design, and real results. High-performance web apps, AI agents, and intuitive digital experiences.",
-    url: "/",
+    url: siteUrl,
     siteName: "Daysman Gad Portfolio",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 736,
+        height: 620,
+        type: "image/jpeg",
+        alt: "Daysman Gad - Full-Stack Developer & AI Specialist",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Daysman Gad | Full-Stack Developer & AI Specialist",
     description:
       "Delivering clean code, sharp design, and real results. High-performance web apps, AI agents, and intuitive digital experiences.",
+    images: ["/og-image.jpg"],
   },
 };
 
